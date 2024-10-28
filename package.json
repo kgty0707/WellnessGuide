@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build_tailwind": "npx tailwindcss -i ./input.css -o YOUR_CSS_FOLDER/tailwind.css --watch"
+  }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--begin::Head-->
+    <head>
+        <base href=""/>
+        <title>
+            {% block title %}Health Supplement Recommendation System{% endblock %}
+        </title>
+        <meta charset="utf-8"/>
+        <meta
+            name="description"
+            content="A system for recommending health supplements based on disease prediction."/>
+        <meta
+            name="keywords"
+            content="health, supplements, disease prediction, recommendation system"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="shortcut icon" href="/static/assets/media/logos/favicon.ico"/>
+        <!-- Fonts -->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
+        <!-- Vendor Stylesheets -->
+        <link
+            href="/static/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css"
+            rel="stylesheet"
+            type="text/css"/>
+        <link
+            href="/static/assets/plugins/custom/datatables/datatables.bundle.css"
+            rel="stylesheet"
+            type="text/css"/>
+        <!-- Global Stylesheets -->
+        <link
+            href="/static/assets/plugins/global/plugins.bundle.css"
+            rel="stylesheet"
+            type="text/css"/>
+        <link
+            href="/static/assets/css/style.bundle.css"
+            rel="stylesheet"
+            type="text/css"/>
+    </head>
+    <!--end::Head-->
+    <!--begin::Body-->
+    <body id="kt_app_body" class="header-over header-sticky header-fixed user-scrolled-down">
+        <header class="p-3 mb-3 border-bottom fixed">
+            <div class="container">
+                <div
+                    class="d-flex flex-wrap align-items-center justify-content-center">
+                    <a
+                        href="/"
+                        class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                            <use xlink:href="#bootstrap"></use>
+                        </svg>
+                    </a>
+
+                    <ul
+                        class="nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
+                        <li>
+                            <a href="#" class="nav-link px-2 link-secondary">Overview</a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-2 link-dark">Inventory</a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-2 link-dark">Customers</a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-2 link-dark">Products</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <script>
+            var hostUrl = "/static/assets/";
+        </script>
+        <!-- Global Javascript Bundle -->
+        <script src="/static/assets/plugins/global/plugins.bundle.js"></script>
+        <script src="/static/assets/js/scripts.bundle.js"></script>
+        <!-- Vendor Javascript -->
+        <script src="/static/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+        <script src="/static/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+        <!-- Custom Javascript -->
+        <script src="/static/assets/js/widgets.bundle.js"></script>
+        <script src="/static/assets/js/custom/widgets.js"></script>
+    </body>
+    <!--end::Body-->
+</html>

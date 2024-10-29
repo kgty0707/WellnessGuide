@@ -1,7 +1,6 @@
-import urllib.parse
-
-from fastapi import APIRouter, Request
-from pydantic import BaseModel
+from fastapi import FastAPI, APIRouter, Request, Form, HTTPException
+from pydantic import BaseModel, EmailStr, Field
+from typing import Optional
 
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -9,48 +8,53 @@ from fastapi.responses import HTMLResponse, JSONResponse
 # from app.routes.load_model import Model
 # from app.routes.model import generate_answer
 
-
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
-class Query(BaseModel):
-    model_type: str
-    query: str
+class UserInfo(BaseModel):
+    name: str = Field(..., min_length=1, description="User's name")
+    email: EmailStr
+    phone: str = Field(..., min_length=10, max_length=15, description="User's phone number")
 
 
-@router.get("/main")
-def hello(request: Request):
+
+@router.get("/", response_class=HTMLResponse)
+def main(request: Request):
     return templates.TemplateResponse(
         name="user_info.html",
         request=request
     )
 
 
-@router.get("/", response_class=HTMLResponse)
-def main(request: Request):
+@router.post("/user_info", response_class=HTMLResponse)
+def receive_user_info(request: Request,
+                      name: str = Form(...),
+                      height: str = Form(...),
+                      weight: str = Form(...),
+                      phone: str = Form(...)):
+    try:
+        # 데이터 처리 로직 추가 (예: 데이터베이스 저장)
+        user_info = {
+            "name": name,
+            "height": height,
+            "weight": weight,
+            "phone": phone
+        }
+        print(user_info)  # 디버깅용 출력
+
+        # 제출 완료 페이지 렌더링
+        return templates.TemplateResponse(
+            name="send_info.html",
+            request=request,
+            context={"request": request, "user_info": user_info}
+        )
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=400, detail="데이터 처리에 실패했습니다.")
+
+@router.get("/send_info", response_class=HTMLResponse)
+def send_info(request: Request):
     return templates.TemplateResponse(
-        name="main.html",
+        name="send_info.html",
         request=request
     )
-
-
-# @router.post("/send_query", response_class=HTMLResponse)
-# def send_query(request: Request, data: Query):
-
-#     model_type = Model(data.model_type).get_model_type()
-#     print("모델 타입:", model_type)
-    
-#     request_data = {
-#         'prompt': data.query,
-#         'model_type': model_type,
-#     }
-
-#     answer, picture = generate_answer(request_data)
-#     print(f"답변: {answer}, 사진: {picture}")
-
-#     json_data = {
-#         'answer': answer,
-#         'picture': picture
-#     }
-
-#     return JSONResponse(content=json_data)

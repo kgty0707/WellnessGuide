@@ -1,108 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="d-flex justify-content-center align-items-center vh-100">
+<div class="container py-6 py-lg-7">
+    <div class="flex-grow-1 d-flex justify-content-center align-items-center" style="padding-top: 100px;">
         <div class="card" style="width: 400px;">
-            <div class="card-header d-flex justify-content-start">
+            <div class="card-header d-flex justify-content-end">
                 <span id="in_number" class="card-title">
                     1
                 </span>
                 <span class="card-title">
-                    / 8
+                    &nbsp;/ 8
                 </span>
             </div>
             <div class="card-body">
-                <form id="multiStepForm">
+                <form id="multiStepForm" method="POST" action="/user_info">
                     <!-- Step 1 -->
-                    <div class="form-step" data-step="1">
-                        <label for="name" class="card-title">
-                            <h1 class="card-title">이름을 입력해주세요😊</h1>
-                        </label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="이름" required>
+                    <div class="form-step my-3" data-step="1">
+                        <div class="mb-2 noto-sans-kr-b">대사증후군에 가까운지 확인할 수 있어요</div>
+                        <label for="name" class="mb-2">이름을 입력해주세요😊</label>
+                        <input type="text" id="name" name="name" class="form-control mb-2" required>
                     </div>
                     <!-- Step 2 -->
-                    <div class="form-step d-none" data-step="2">
-                        <label for="email" class="card-title">
-                            <h1 class="card-title">이메일을 입력해주세요📧</h1>
-                        </label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="이메일" required>
+                    <div class="form-step d-none my-3" data-step="2">
+                        <div class="mb-2 noto-sans-kr-b">건강검진정보를 입력하는 첫 단계에요!</div>
+                        <label for="height" class="mb-2">키(cm)</label>
+                        <input type="number" id="height" name="height" class="form-control mb-2" required>
+                        <label for="weight" class="mb-2">몸무게(kg)</label>
+                        <input type="number" id="weight" name="weight" class="form-control mb-2" required>
                     </div>
                     <!-- Step 3 -->
-                    <div class="form-step d-none" data-step="3">
-                        <label for="phone" class="card-title">
-                            <h1 class="card-title">전화번호를 입력해주세요📞</h1>
-                        </label>
-                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="전화번호" required>
+                    <div class="form-step d-none my-3" data-step="3">
+                        <label for="phone" class="mb-2">전화번호:</label>
+                        <input type="tel" id="phone" name="phone" class="form-control mb-2" required>
                     </div>
-                    <!-- 추가적인 단계들을 여기에 추가 -->
-                    <!-- 예를 들어, step 4 ~ step 8 -->
+                    <!-- 로딩 인디케이터 (필요 시 추가) -->
                 </form>
             </div>
-            <div class="card-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-secondary" id="nextBtn" disabled>다음</button>
+            <div class="card-footer text-center noto-sans-kr">
+                <button type="button" class="btn btn-dark px-5" id="nextBtn" disabled>다음</button>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('multiStepForm');
-            const nextBtn = document.getElementById('nextBtn');
-            const inNumber = document.getElementById('in_number');
-            const totalSteps = 8;
-            let currentStep = 1;
-
-            // 입력 필드 변경 시 버튼 활성화/비활성화
-            form.addEventListener('input', function() {
-                const currentInput = form.querySelector(`.form-step[data-step="${currentStep}"] input`);
-                if (currentInput.value.trim() !== "") {
-                    nextBtn.disabled = false;
-                } else {
-                    nextBtn.disabled = true;
-                }
-            });
-
-            nextBtn.addEventListener('click', function() {
-                const currentInput = form.querySelector(`.form-step[data-step="${currentStep}"] input`);
-                if (currentInput.value.trim() === "") {
-                    alert("필드를 비워둘 수 없습니다.");
-                    return;
-                }
-
-                // 현재 입력값을 저장하거나 처리하는 로직을 여기에 추가
-                // 예: form 데이터를 서버로 전송하거나 로컬 스토리지에 저장
-
-                // 다음 단계로 이동
-                form.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('d-none');
-                currentStep += 1;
-
-                if (currentStep > totalSteps) {
-                    // 모든 단계를 완료했을 때
-                    alert("모든 단계를 완료했습니다!");
-                    // 완료 후의 동작을 여기에 추가 (예: 리다이렉트)
-                    return;
-                }
-
-                // 다음 단계 표시
-                form.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('d-none');
-
-                // in_number 업데이트
-                inNumber.textContent = currentStep;
-
-                // 버튼 텍스트 변경
-                if (currentStep === totalSteps) {
-                    nextBtn.textContent = "완료";
-                } else {
-                    nextBtn.textContent = "다음";
-                }
-
-                // 버튼 비활성화 상태로 초기화
-                nextBtn.disabled = true;
-            });
-
-            const initialInput = form.querySelector(`.form-step[data-step="${currentStep}"] input`);
-            if (initialInput.value.trim() !== "") {
-                nextBtn.disabled = false;
-            }
-        });
-    </script>
+<script src="/static/js/user_info.js"></script>
 {% endblock %}

@@ -52,7 +52,7 @@ def receive_user_info(request: Request,
         print(e)
         raise HTTPException(status_code=400, detail="데이터 처리에 실패했습니다.")
 
-@router.get("/send_info", response_class=HTMLResponse)
+@router.get("/send_info")
 def send_info(request: Request):
     return templates.TemplateResponse(
         name="send_info.html",

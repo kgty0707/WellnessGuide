@@ -32,36 +32,35 @@
 <!--end::Head-->
 <!--begin::Body-->
 
-<body class="header-sticky header-fixed d-flex flex-column min-vh-100 bg-gray-200 noto-sans-kr">
+<body class="bg-gray-200 noto-sans-kr">
     <header class="fixed-top shadow-xs bg-white noto-sans-kr-b">
         <div class="container position-relative">
-            <div class="d-flex flex-wrap align-items-center justify-content-center">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-
-                <ul class="nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
-                    <li>
-                        <a href="#" class="nav-link px-2 link-secondary">Home</a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-2 link-dark">DashBoard</a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-2 link-dark">Health functional food</a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-2 link-dark">About Us</a>
-                    </li>
-                </ul>
-            </div>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#"><i class="fi fi-shape-hexa"></i>&nbsp;&nbsp;매우 진지한</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
         </div>
     </header>
 
-    {% block content %}
-    {% endblock %}
+    <main class="pt-5">
+        {% block content %}
+        {% endblock %}
+    </main>
+
     <script>
         var hostUrl = "/static/assets/";
     </script>

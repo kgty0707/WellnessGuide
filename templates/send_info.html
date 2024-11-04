@@ -1,152 +1,183 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container card mt-6 p-4">
-    <div class="mb-4">
-        <span class="fs-5 noto-sans-kr-b">{{ user_info.name }}</span>님의 건강상태를 확인해봤어요!
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <!-- 첫 번째 카드 -->
-            <div class="card my-3">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="card wave-card position-relative overflow-hidden m-4"
-                            style="width: 11rem; height: 180px;">
-                            <canvas class="waveCanvas position-absolute top-0 start-0 w-100 h-100"></canvas>
-                            <div class="position-absolute top-50 start-50 translate-middle">
-                                <h5 class="card-title text-white mb-0">80%</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="m-4">
-                            <div class="card-title fs-5 noto-sans-kr-b mb-3">당뇨병</div>
-                            Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or
-                            even a very very short story.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 두 번째 카드 -->
-            <div class="card my-3">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="card wave-card position-relative overflow-hidden m-4"
-                            style="width: 11rem; height: 180px;">
-                            <canvas class="waveCanvas position-absolute top-0 start-0 w-100 h-100"></canvas>
-                            <div class="position-absolute top-50 start-50 translate-middle">
-                                <h5 class="card-title text-white mb-0">60%</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="m-4">
-                            <div class="card-title fs-5 noto-sans-kr-b mb-3">고혈압</div>
-                            Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or
-                            even a very very short story.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 세 번째 카드 -->
-            <div class="card my-3">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="card wave-card position-relative overflow-hidden m-4"
-                            style="width: 11rem; height: 180px;">
-                            <canvas class="waveCanvas position-absolute top-0 start-0 w-100 h-100"></canvas>
-                            <div class="position-absolute top-50 start-50 translate-middle">
-                                <h5 class="card-title text-white mb-0">70%</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="m-4">
-                            <div class="card-title fs-5 noto-sans-kr-b mb-3">이상지질혈증</div>
-                            Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or
-                            even a very very short story.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 네 번째 카드 -->
-            <div class="card my-3">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="card wave-card position-relative overflow-hidden m-4"
-                            style="width: 11rem; height: 180px;">
-                            <canvas class="waveCanvas position-absolute top-0 start-0 w-100 h-100"></canvas>
-                            <div class="position-absolute top-50 start-50 translate-middle">
-                                <h5 class="card-title text-white mb-0">90%</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="m-4">
-                            <div class="card-title fs-5 noto-sans-kr-b mb-3">복부비만</div>
-                            Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or
-                            even a very very short story.
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container card my-6 p-4">
+        <div class="mb-4">
+            <span class="fs-5 noto-sans-kr-b">{{ user_info.name }}</span>님의 건강상태를 확인해봤어요!
         </div>
-        <!-- 두 번째 열 (col-md-6: 중간 크기 이상에서 6칸 차지) -->
-        <div class="col-md-6">
-            <!-- 두 번째 열의 2개 행 -->
-            <div class="card my-3">
-                <div class="card-body m-2">
-                    <div class="card-title fs-5 noto-sans-kr-b mb-3">대사증후군이 의심돼요</div>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped bg-dark progress-bar-animated" role="progressbar"
-                            style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- 첫 번째 카드 -->
+                <div class="card my-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <div
+                                class="card wave-card position-relative overflow-hidden m-4"
+                                style="width: 11rem; height: 180px;">
+                                <canvas class="waveCanvas position-absolute top-0 start-0 w-100 h-100"></canvas>
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <h5 class="card-title text-white mb-0">80%</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="m-4">
+                                <div class="card-title fs-5 noto-sans-kr-b mb-3">당뇨병</div>
+                                Body text for whatever you’d like to say. Add main takeaway points, quotes,
+                                anecdotes, or even a very very short story.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 두 번째 카드 -->
+                <div class="card my-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <div
+                                class="card wave-card position-relative overflow-hidden m-4"
+                                style="width: 11rem; height: 180px;">
+                                <canvas class="waveCanvas position-absolute top-0 start-0 w-100 h-100"></canvas>
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <h5 class="card-title text-white mb-0">60%</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="m-4">
+                                <div class="card-title fs-5 noto-sans-kr-b mb-3">고혈압</div>
+                                Body text for whatever you’d like to say. Add main takeaway points, quotes,
+                                anecdotes, or even a very very short story.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 세 번째 카드 -->
+                <div class="card my-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <div
+                                class="card wave-card position-relative overflow-hidden m-4"
+                                style="width: 11rem; height: 180px;">
+                                <canvas class="waveCanvas position-absolute top-0 start-0 w-100 h-100"></canvas>
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <h5 class="card-title text-white mb-0">70%</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="m-4">
+                                <div class="card-title fs-5 noto-sans-kr-b mb-3">이상지질혈증</div>
+                                Body text for whatever you’d like to say. Add main takeaway points, quotes,
+                                anecdotes, or even a very very short story.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 네 번째 카드 -->
+                <div class="card my-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <div
+                                class="card wave-card position-relative overflow-hidden m-4"
+                                style="width: 11rem; height: 180px;">
+                                <canvas class="waveCanvas position-absolute top-0 start-0 w-100 h-100"></canvas>
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <h5 class="card-title text-white mb-0">90%</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="m-4">
+                                <div class="card-title fs-5 noto-sans-kr-b mb-3">복부비만</div>
+                                Body text for whatever you’d like to say. Add main takeaway points, quotes,
+                                anecdotes, or even a very very short story.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card my-3">
-                <div class="card-body m-2 mb-0 d-flex justify-content-between align-items-center">
-                    <p class="mb-0 fs-5 noto-sans-kr-b">{{ user_info.name }}님은 이런 영양제를 먹으면 좋아요</p>
-                    <button class="btn btn-dark">더보기</button>
+            <!-- 두 번째 열 (col-md-6: 중간 크기 이상에서 6칸 차지) -->
+            <div class="col-md-6">
+                <!-- 두 번째 열의 2개 행 -->
+                <div class="card my-3">
+                    <div class="card-body m-2">
+                        <div class="card-title fs-5 noto-sans-kr-b mb-3">대사증후군이 의심돼요&nbsp;&nbsp;<span data-bs-toggle="tooltip" data-bs-placement="right" title="대사증후군은 당뇨병, 고혈압, 만성콩팥병, 심뇌혈관질환 발생 위험도를 높이며, 유방암, 직장암 등 각종 암 발생 및 사망률과도 관계가 있어요."><i class="fi fi-round-info-full"></i></span></div>
+                        <p>{{ user_info.name }}님은 혈당을 낮추기 위해 비타민 D나 마그네슘이 포함된 건강기능 식품을 먹는 게 좋아요</p>
+                        <div class="progress">
+                            <div
+                                class="progress-bar progress-bar-striped bg-dark progress-bar-animated"
+                                role="progressbar"
+                                style="width: 50%"
+                                aria-valuenow="50"
+                                aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body m-2 mt-0">
-                    Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or
-                    even a very very short story.
-                    <!-- 첫 번째 행 -->
-                    <div class="mt-4">
-                        <div class="row my-3">
-                            <div class="col-md-4 m-2">
-                                <!-- 열 1, 행 1 -->
-                                <div class="card">
-                                    <img src="\static\assets\images\drug.png" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title fs-5 noto-sans-kr-b">건강기능식품 이름</h5>
-                                        <p class="card-text"><span>7,200</span>원</p>
+                <div class="card my-3">
+                    <div
+                        class="card-body m-2 mb-0 d-flex justify-content-between align-items-center">
+                        <p class="mb-0 fs-5 noto-sans-kr-b">💊{{ user_info.name }}님은 이런 영양제를 먹으면 좋아요<span class="small noto-sans-kr"><br>사람들이 가장 자주 찾는 제품들이 먼저 나와요</span></p>
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalCentered">
+                            더보기
+                        </button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalCentered" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalCenteredLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalCenteredLabel">앗!</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        아직 기능이 준비중이예요🥹
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">닫기</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <!-- 열 2, 행 1 -->
-                                short story
-                            </div>
-                            <div class="col-md-4">
-                                <!-- 열 3, 행 1 -->
-                                short story
-                            </div>
                         </div>
-                        <!-- 두 번째 행 -->
-                        <div class="row">
-                            <div class="col-md-4">
-                                <!-- 열 1, 행 2 -->
-                                short story
-                            </div>
-                            <div class="col-md-4">
-                                <!-- 열 2, 행 2 -->
-                                short story
-                            </div>
-                            <div class="col-md-4">
-                                <!-- 열 3, 행 2 -->
-                                short story
-                            </div>
+                    </div>
+                    <div class="card-body m-2 mt-0">
+                        <!-- 첫 번째 행 -->
+                        <div>
+                            {% for row in products | batch(3, '') %}
+                                <div class="row">
+                                    {% for product in row %}
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100">
+                                                <a href="{{ product.link }}" target="_blank" rel="noopener noreferrer">
+                                                    <img
+                                                        src="{{ product.image }}"
+                                                        class="card-img-top"
+                                                        alt="{{ product.title | striptags }}">
+                                                </a>
+                                                <div class="card-body d-flex flex-column">
+                                                    <h5 class="card-title small">{{ product.title | striptags | truncate(21, True, '...') }}</h5>
+                                                    <p class="card-text mt-auto">
+                                                        {% if product.lprice == '0' %}
+                                                            가격을 파악하기 어려워요
+                                                        {% else %}
+                                                            {{ "{:,}".format(product.lprice|int) }}원
+                                                        {% endif %}
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <small class="text-muted">
+                                                            {{ product.mallName }}</small>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="text-center">표시할 제품이 없습니다.</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

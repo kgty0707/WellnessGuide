@@ -4,6 +4,7 @@ from typing import Optional
 
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, JSONResponse
+from app.routes.shop import search_product
 
 # from app.routes.load_model import Model
 # from app.routes.model import generate_answer
@@ -33,24 +34,24 @@ def receive_user_info(request: Request,
                       weight: str = Form(...),
                       phone: str = Form(...)):
     try:
-        # 데이터 처리 로직 추가 (예: 데이터베이스 저장)
         user_info = {
             "name": name,
             "height": height,
             "weight": weight,
             "phone": phone
         }
-        print(user_info)  # 디버깅용 출력
 
-        # 제출 완료 페이지 렌더링
+        products = search_product("당뇨 건강기능식품")
+
         return templates.TemplateResponse(
             name="send_info.html",
             request=request,
-            context={"request": request, "user_info": user_info}
+            context={"request": request, "user_info": user_info, "products": products}
         )
     except Exception as e:
         print(e)
         raise HTTPException(status_code=400, detail="데이터 처리에 실패했습니다.")
+
 
 @router.get("/send_info")
 def send_info(request: Request):

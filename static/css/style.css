@@ -32,17 +32,17 @@
 html, body {
   width: 100%;
   height: 100%;
+  overflow: auto;
 }
 
 body {
-  overflow: hidden; /* 영역을 넘는 부분은 숨기기 */
   background-color: #f0f8ff; /* 연한 배경색 */
 }
 
 .wave-card {
   position: relative;
   overflow: hidden;
-  background-color: #1e90ff; /* 파도의 색상을 나타내는 진한 파란색 */
+  background-color: black; /* 파도의 색상을 나타내는 진한 파란색 */
 }
 
 /* Canvas 스타일링 */

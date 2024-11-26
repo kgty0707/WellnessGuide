@@ -1,0 +1,55 @@
+.noto-sans-kr {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.noto-sans-kr-b {
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* 기본 스타일 설정 */
+* {
+  /* 드래그나 더블클릭 시에 텍스트가 선택되지 않도록 설정 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  /* 너비 등의 레이아웃에 관여하지 않는 테두리 제거 */
+  outline: 0;
+  /* 마진 패딩 제거 */
+  margin: 0;
+  padding: 0;
+  /* IOS 웹킷에서 터치 시에 등장하는 하이라이트를 제거하기 위함 */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+body {
+  background-color: #f0f8ff; /* 연한 배경색 */
+}
+
+.wave-card {
+  position: relative;
+  overflow: hidden;
+  background-color: black; /* 파도의 색상을 나타내는 진한 파란색 */
+}
+
+/* Canvas 스타일링 */
+#waveCanvas {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

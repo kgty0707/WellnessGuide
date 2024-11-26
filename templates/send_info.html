@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container card my-6 p-4 text-dark">
+        <div class="mb-4">
+            <span class="fs-5 noto-sans-kr-b">{{ user_info.name }}</span>님의 건강상태를 확인해봤어요!
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- 첫 번째 카드 -->
+                <div class="card">
+                    <div class="card-body m-2 text-dark">
+                        <div class="card-title fs-5 noto-sans-kr-b mb-3">
+                            대사증후군 {{ overall_risk_level }}단계예요&nbsp;
+                            <span data-bs-toggle="tooltip"
+                                  data-bs-placement="right"
+                                  title="대사증후군은 만성콩팥병, 심뇌혈관질환 발생 위험도를 높이며, 각종 암 발생 및 사망률과도 관계가 있어요.">
+                                <i class="fi fi-round-info-full"></i>
+                            </span>
+                        </div>
+                        <p>{{ user_info.name }}님의 평균 대사증후군 위험도는 <strong>{{ average_probability|round(2) }}%</strong>로, <strong>{{ overall_risk_level }}</strong> 단계에 해당해요.</p>
+                        <p>{{ overall_message }}</p>
+                        <div class="progress">
+                            <div
+                                class="progress-bar progress-bar-striped bg-dark progress-bar-animated"
+                                role="progressbar"
+                                style="width: {{ average_probability }}%"
+                                aria-valuenow="{{ average_probability }}"
+                                aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 위험 레벨별 카드 -->
+                {% for condition, risk in risk_levels.items() %}
+                    <div class="card my-3">
+                        <div class="row">
+                            <div class="col-4">
+                                <div
+                                    class="card wave-card position-relative overflow-hidden m-4"
+                                    style="width: 11rem; height: 200px;">
+                                    <canvas class="waveCanvas position-absolute top-0 start-0 w-100 h-100"></canvas>
+                                    <div class="position-absolute top-50 start-50 translate-middle">
+                                        <h5 class="card-title text-white mb-0">{{ risk.probability }}%</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="m-4 text-dark">
+                                    <div class="card-title fs-5 noto-sans-kr-b mb-3">{{ condition }}</div>
+                                    <p>{{ risk.message }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- 두 번째 열 (col-md-6: 중간 크기 이상에서 6칸 차지) -->
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- 각 질병별 추천 제품 -->
+                        {% for condition, products in recommendations.items() %}
+                        <p class="badge bg-dark rounded-pill text-truncate" 
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="top" 
+                            title="{{ condition }}와(과) 관련된 추천 제품은 식품의약품안전처를 기반으로 제공해요.">
+                            {{ condition }}
+                        </p>
+                        <div class="d-flex flex-wrap gap-2 mb-3" role="group" aria-label="{{ condition }} Products">
+                            {% if products %}
+                                <!-- 제품 버튼 생성 -->
+                                {% for product in products %}
+                                <button 
+                                    type="button" 
+                                    class="btn btn-light rounded-pill" 
+                                    data-name="{{ product.PRDUCT }}" 
+                                    data-main-fnctn="{{ product.MAIN_FNCTN }}" 
+                                    data-intake-hint="{{ product.INTAKE_HINT1 }}" 
+                                    data-base-standard="{{ product.BASE_STANDARD }}"
+                                    onclick="handleClick(this)">
+                                    {{ product.PRDUCT | truncate(15, True, '...') }}
+                                </button>
+                                {% endfor %}
+                            {% else %}
+                                <!-- 제품이 없을 경우 메시지 표시 -->
+                                <p class="text-muted">현재 {{ condition }}와 관련된 추천 제품이 없습니다.</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <!-- 제품 상세 정보 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card position-relative" id="productDetailsContainer" style="display: none;">
+                            <!-- 닫기 버튼 -->
+                            <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close" onclick="closeProductDetails()"></button>
+                            
+                            <div class="card-body">
+                                <!-- 제품 상세 정보 제목 -->
+                                <p class="card-title noto-sans-kr-b text-dark" id="productTitle"></p>
+                                <br>
+                                <!-- 제품 상세 설명 -->
+                                <p class="card-text noto-sans-kr text-dark"><strong>기능:</strong> <span id="productFunction"></span></p>
+                                <p class="card-text noto-sans-kr text-dark"><strong>섭취 방법:</strong> <span id="productIntake"></span></p>
+                                <p class="card-text noto-sans-kr text-dark"><strong>기준:</strong> <span id="productStandard"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card my-3">
+                    <div
+                        class="card-body m-2 mb-0 d-flex justify-content-between align-items-center text-dark">
+                        <p class="mb-0 fs-5 noto-sans-kr-b">💊{{ user_info.name }}님은 이런 영양제를 먹으면 좋아요<span class="noto-sans-kr fs-6"><br>사람들이 가장 자주 찾는 제품들이 먼저 나와요</span></p>
+                        <button
+                            type="button"
+                            class="btn btn-dark"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalCentered">
+                            더보기
+                        </button>
+                        <!-- Modal -->
+                        <div
+                            class="modal fade"
+                            id="modalCentered"
+                            data-bs-keyboard="false"
+                            tabindex="-1"
+                            aria-labelledby="modalCenteredLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalCenteredLabel">앗!</h5>
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        아직 기능이 준비중이예요🥹
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">닫기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body m-2 mt-0">
+                        <!-- 첫 번째 행 -->
+                        <div>
+                            {% for row in products | batch(3, '') %}
+                                <div class="row">
+                                    {% for product in row %}
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card h-100 text-dark">
+                                                <a href="{{ product.link }}" target="_blank" rel="noopener noreferrer">
+                                                    <img
+                                                        src="{{ product.image }}"
+                                                        class="card-img-top"
+                                                        alt="{{ product.title | striptags }}">
+                                                </a>
+                                                <div class="card-body d-flex flex-column">
+                                                    <h5 class="card-title small">{{ product.title | striptags | truncate(21, True, '...') }}</h5>
+                                                    <p class="card-text mt-auto">
+                                                        {% if product.lprice is defined and product.lprice != '0' and product.lprice|int > 0 %}
+                                                            {{ "{:,}".format(product.lprice|int) }}원
+                                                        {% else %}
+                                                            가격을 파악하기 어려워요
+                                                        {% endif %}
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <small class="text-muted">
+                                                            {{ product.mallName }}</small>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="text-center">표시할 제품이 없습니다.</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="/static/js/main.js"></script>
+<script src="/static/js/send_info.js"></script>
+{% endblock %}

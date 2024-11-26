@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    #loadingOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8); /* 반투명 배경 */
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loading-icon-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 300px; /* 큰 원 크기 */
+        height: 300px;
+    }
+
+    .loading-icon-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* 원 크기 */
+        height: 100%;
+        border-radius: 50%; /* 원형 모양 */
+        background-color: #fff; /* 하얀색 배경 */
+        z-index: 1;
+    }
+
+    .loading-content {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 2; /* 원 위에 표시 */
+    }
+
+    .loading-icon {
+        width: 80px; /* 아이콘 크기 */
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .loading-text {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+
+<div id="loadingOverlay" style="display: none;">
+    <div class="text-center">
+        <!-- 아이콘과 배경 -->
+        <div class="loading-icon-wrapper">
+            <div class="loading-icon-background"></div> <!-- 하얀색 큰 원 -->
+            <div class="loading-content">
+                <img class="loading-icon" src="/static/assets/images/loading_icon.gif" alt="Loading...">
+                <p class="loading-text" style="display: none;">인공지능이 작동하고 있어요...</p>
+                <p class="loading-text" style="display: none;">질병이 있는지 확인하고 있어요...</p>
+                <p class="loading-text" style="display: none;">이제 끝났어요!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container py-6 py-lg-7">
+    <div class="flex-grow-1 d-flex justify-content-center align-items-center" style="padding-top: 100px;">
+        <div class="card" style="width: 400px;">
+            <div class="card-header d-flex justify-content-end">
+                <span id="in_number" class="card-title">
+                    1
+                </span>
+                <span class="card-title">
+                    &nbsp;/ 8
+                </span>
+            </div>
+            <div class="card-body">
+                <form id="multiStepForm" method="POST" action="/user_info">
+                    <!-- Step 1 -->
+                    <div class="form-step my-3" data-step="1">
+                        <div class="mb-2 noto-sans-kr-b">대사증후군에 가까운지 확인할 수 있어요</div>
+                        <label for="name" class="mb-2">이름을 입력해주세요😊</label>
+                        <input type="text" id="name" name="name" class="form-control mb-2" required>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="form-step d-none my-3" data-step="2">
+                        <div class="mb-2 noto-sans-kr-b">건강검진정보를 입력하는 첫 단계에요!</div>
+                        <label for="height" class="mb-2">키(cm)</label>
+                        <input type="number" id="height" name="height" class="form-control mb-2" required>
+                        <label for="weight" class="mb-2">몸무게(kg)</label>
+                        <input type="number" id="weight" name="weight" class="form-control mb-2" required>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="form-step d-none my-3" data-step="3">
+                        <label for="phone" class="mb-2">전화번호:</label>
+                        <input type="tel" id="phone" name="phone" class="form-control mb-2" required>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center noto-sans-kr">
+                <button type="button" class="btn btn-dark px-5" id="nextBtn" disabled>다음</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/user_info.js"></script>
+{% endblock %}

@@ -21,7 +21,15 @@ class UserInfo(BaseModel):
 @router.get("/", response_class=HTMLResponse)
 def main(request: Request):
     return templates.TemplateResponse(
-        name="user_info.html",
+        name="main.html",
+        request=request
+    )
+
+
+@router.get("/dashboard", response_class=HTMLResponse)
+def main(request: Request):
+    return templates.TemplateResponse(
+        name="dashboard.html",
         request=request
     )
 
@@ -48,11 +56,12 @@ def receive_user_info(request: Request,
         # 위험도 분류
         risk_levels = {}
         for condition, probability in probabilities.items():
-            level, message = classify_risk(condition, probability)
+            level, message, color = classify_risk(condition, probability)
             risk_levels[condition] = {
                 "probability": probability,
                 "level": level,
                 "message": message,
+                "color": color
             }
 
         average_probability, overall_risk_level, overall_message = calculate_overall_risk(probabilities)
@@ -89,10 +98,3 @@ def receive_user_info(request: Request,
     except Exception as e:
         print(e)
         raise HTTPException(status_code=400, detail="데이터 처리에 실패했습니다.")
-
-@router.get("/send_info")
-def send_info(request: Request):
-    return templates.TemplateResponse(
-        name="send_info.html",
-        request=request
-    )

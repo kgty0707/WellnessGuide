@@ -80,6 +80,7 @@ def classify_risk(condition, probability):
     """
     if probability <= 60:
         level = "안전"
+        color = "success"
         if condition == "당뇨":
             message = "현재 혈당 상태는 안정적이고, 당뇨 위험도 낮은 편이에요! 그동안 건강한 생활 습관을 잘 지켜온 것 같아요, 지금 상태는 정말 좋아요."
         elif condition == "고혈압":
@@ -92,6 +93,7 @@ def classify_risk(condition, probability):
             message = "현재 건강 상태는 안전합니다. 꾸준히 관리하세요."
     elif 61 <= probability <= 80:
         level = "의심"
+        color = "warning"
         if condition == "당뇨":
             message = "혈당이 조금 높아 당뇨로 이어질 가능성이 있으니 지금부터 주의가 필요해요. 당분 섭취를 줄이고 단백질이 풍부한 음식을 챙겨 드시면 큰 도움이 될 거예요. 또 가벼운 근력 운동을 시작해보세요."
         elif condition == "고혈압":
@@ -104,6 +106,7 @@ def classify_risk(condition, probability):
             message = "건강 상태가 의심됩니다. 생활 습관을 점검하세요."
     else:
         level = "위험"
+        color = "danger"
         if condition == "당뇨":
             message = "현재 혈당 상태는 당뇨 위험이 높은 단계로 보이네요. 지금이 중요한 시기인 만큼 관리가 꼭 필요해요. 우선 전문가와 상담을 받아 정밀 검진을 진행해봐요. 지금부터 시작하시면 건강을 되찾을 수 있어요."
         elif condition == "고혈압":
@@ -115,7 +118,7 @@ def classify_risk(condition, probability):
         else:
             message = "건강 상태가 좋지 않을 수 있습니다. 전문의 상담을 권장합니다."
 
-    return level, message
+    return level, message, color
 
 
 def recommend_products(risk_levels):

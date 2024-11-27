@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% set active_page = "dashboard_page" %}
+
+{% block content %}
+    <div class="container-fluid text-dark shadow-md py-8 mx-0">
+        <div class="align-items-center text-center fs-1 noto-sans-kr-b">Dashboard</div>
+        <div class="align-items-center text-center fs-6 noto-sans-kr">매우 진지한</div>
+    </div>
+    <div class="container bg-white text-dark px-6">
+        <div class="section">
+            <div class="noto-sans-kr-b fs-4">연령대별 데이터 시각화</div>
+            <div class="noto-sans-kr mb-5">건강검진 데이터를 기반으로 10세~120세까지의 당뇨, 고혈압, 이상지질혈증, 비만의 비율을 나타내고 있어요</div>
+            <div
+                class="flot-chart small"
+                data-flot-id="flot_json_example"
+                data-flot-border-color="#eaeaea"
+                data-flot-type="fill"
+                data-flot-legend-show="true"
+                data-ajax-url="/_ajax/flot_chart_data.json"
+                data-ajax-update-interval="0"
+                data-ajax-params="['action','graph_data']['param2','value2']"
+                data-ajax-method="GET"
+                data-ajax-dataType="json"
+                data-flot-ticks='[
+                    [1, "Jan"],
+                    [2, "Feb"],
+                    [3, "Mar"],
+                    [4, "Apr"],
+                    [5, "May"],
+                    [6, "Jun"],
+                    [7, "Jul"],
+                    [8, "Aug"],
+                    [9, "Sep"],
+                    [10, "Oct"],
+                    [11, "Nov"],
+                    [12, "Dec"]
+                ]'
+                style="height:400px;"></div>
+        </div>
+        <div class="section pt-0 text-center">
+            <div class="noto-sans-kr-b fs-4 text-center">질병에 따른 파이차트</div>
+            <div class="noto-sans-kr mb-5">우리나라의 각 질병 비율을 나타내요</div>
+            <div class="row align-items-center">
+                <div class="col-4 ps-4">
+                    <div
+                        class="easypie d-inline-block position-relative"
+                        data-bar-color="#424242"
+                        data-track-color="#eaeaea"
+                        data-scale-color="#cccccc"
+                        data-scale-length="5"
+                        data-line-width="40"
+                        data-line-cap="round"
+                        data-size="300"
+                        data-percent="73">
+                        <div class="absolute-full d-middle pt-0 pb-2">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                세계 1위
+                            </span>
+                            <div class="flex-none text-center">
+                                <span class="d-block noto-sans-kr-b fs-3">73%</span>
+                                <span class="d-block small">대사증후군 비율</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 ps-8">
+                    <div class="row py-3">
+                        <div
+                            class="easypie d-inline-block position-relative"
+                            data-bar-color="#424242"
+                            data-scale-color="#cccccc"
+                            data-scale-length="0"
+                            data-line-width="20"
+                            data-line-cap="round"
+                            data-size="180"
+                            data-percent="40">
+
+                            <div class="absolute-full d-middle pt-0 pb-2">
+                                <div class="flex-none text-center">
+                                    <span class="d-block noto-sans-kr-b fs-6">40%</span>
+                                    <span class="d-block smaller">당뇨 비율</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-3">
+                        <div
+                            class="easypie d-inline-block position-relative"
+                            data-bar-color="#424242"
+                            data-scale-color="#cccccc"
+                            data-scale-length="0"
+                            data-line-width="20"
+                            data-line-cap="round"
+                            data-size="180"
+                            data-percent="63">
+
+                            <div class="absolute-full d-middle pt-0 pb-2">
+                                <div class="flex-none text-center">
+                                    <span class="d-block noto-sans-kr-b fs-6">63%</span>
+                                    <span class="d-block smaller">고혈압 비율</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row py-3">
+                        <div
+                            class="easypie d-inline-block position-relative"
+                            data-bar-color="#424242"
+                            data-scale-color="#cccccc"
+                            data-scale-length="0"
+                            data-line-width="20"
+                            data-line-cap="round"
+                            data-size="180"
+                            data-percent="58">
+
+                            <div class="absolute-full d-middle pt-0 pb-2">
+                                <div class="flex-none text-center">
+                                    <span class="d-block noto-sans-kr-b fs-6">58%</span>
+                                    <span class="d-block smaller">이상지질혈증 비율</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-3">
+                        <div
+                            class="easypie d-inline-block position-relative"
+                            data-bar-color="#424242"
+                            data-scale-color="#cccccc"
+                            data-scale-length="0"
+                            data-line-width="20"
+                            data-line-cap="round"
+                            data-size="180"
+                            data-percent="51">
+                            <div class="absolute-full d-middle pt-0 pb-2">
+                                <div class="flex-none text-center">
+                                    <span class="d-block noto-sans-kr-b fs-6">51%</span>
+                                    <span class="d-block smaller">비만 비율</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/dashboard.js"></script>
+{% endblock %}

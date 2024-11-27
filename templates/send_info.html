@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% set active_page = "main_page" %}
 {% block content %}
     <div class="container card my-6 p-4 text-dark">
         <div class="mb-4">
@@ -37,7 +38,7 @@
                             <div class="col-4">
                                 <div
                                     class="card wave-card position-relative overflow-hidden m-4"
-                                    style="width: 11rem; height: 200px;">
+                                    style="width: 11rem; height: 200px; background-color: black">
                                     <canvas class="waveCanvas position-absolute top-0 start-0 w-100 h-100"></canvas>
                                     <div class="position-absolute top-50 start-50 translate-middle">
                                         <h5 class="card-title text-white mb-0">{{ risk.probability }}%</h5>
@@ -46,7 +47,7 @@
                             </div>
                             <div class="col-8">
                                 <div class="m-4 text-dark">
-                                    <div class="card-title fs-5 noto-sans-kr-b mb-3">{{ condition }}</div>
+                                    <div class="card-title fs-5 noto-sans-kr-b mb-3">{{ condition }} <span class="badge bg-{{ risk.color }} smaller">{{ risk.level }}</span></div>
                                     <p>{{ risk.message }}</p>
                                 </div>
                             </div>
@@ -111,8 +112,8 @@
                 </div>
                 <div class="card my-3">
                     <div
-                        class="card-body m-2 mb-0 d-flex justify-content-between align-items-center text-dark">
-                        <p class="mb-0 fs-5 noto-sans-kr-b">💊{{ user_info.name }}님은 이런 영양제를 먹으면 좋아요<span class="noto-sans-kr fs-6"><br>사람들이 가장 자주 찾는 제품들이 먼저 나와요</span></p>
+                        class="card-body m-2 mb-0 pb-0 d-flex justify-content-between align-items-center text-dark">
+                        <p class="fs-5 noto-sans-kr-b mb-0 ">💊{{ user_info.name }}님은 이런 영양제를 먹으면 좋아요<span class="noto-sans-kr fs-6"><br>사람들이 가장 자주 찾는 제품들이 먼저 나와요</span></p>
                         <button
                             type="button"
                             class="btn btn-dark"
@@ -154,7 +155,7 @@
                             {% for row in products | batch(3, '') %}
                                 <div class="row">
                                     {% for product in row %}
-                                        <div class="col-md-4 mb-3">
+                                        <div class="col-md-4 mt-3">
                                             <div class="card h-100 text-dark">
                                                 <a href="{{ product.link }}" target="_blank" rel="noopener noreferrer">
                                                     <img

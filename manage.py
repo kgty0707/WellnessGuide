@@ -16,6 +16,7 @@ def create_app():
     app.mount("/static", StaticFiles(directory=static_dir), name="static")
     
     register(app, 'app.routes.main')
+    register(app, 'app.routes.dashboard')
     
     return app
 

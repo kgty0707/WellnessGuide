@@ -3,9 +3,8 @@
 {% block content %}
 <div id="loadingOverlay" style="display: none;">
     <div class="text-center">
-        <!-- 아이콘과 배경 -->
         <div class="loading-icon-wrapper">
-            <div class="loading-icon-background"></div> <!-- 하얀색 큰 원 -->
+            <div class="loading-icon-background"></div>
             <div class="loading-content">
                 <img class="loading-icon" src="/static/assets/images/loading_icon.gif" alt="Loading...">
                 <p class="loading-text" style="display: none;">인공지능이 작동하고 있어요...</p>
@@ -20,43 +19,187 @@
 <div class="container py-6 py-lg-7">
     <div class="flex-grow-1 d-flex justify-content-center align-items-center" style="padding-top: 100px;">
         <div class="card" style="width: 400px;">
-            <div class="card-header d-flex justify-content-end">
-                <span id="in_number" class="card-title">
-                    1
-                </span>
-                <span class="card-title">
-                    &nbsp;/ 8
-                </span>
-            </div>
             <div class="card-body">
-                <form id="multiStepForm" method="POST" action="/user_info">
-                    <!-- Step 1 -->
-                    <div class="form-step my-3" data-step="1">
-                        <div class="mb-2 noto-sans-kr-b">대사증후군에 가까운지 확인할 수 있어요</div>
-                        <label for="name" class="mb-2">이름을 입력해주세요😊</label>
-                        <input type="text" id="name" name="name" class="form-control mb-2" required>
+                <!-- 선택지 버튼 -->
+                
+                <div id="initialChoice">
+                    <div class="card-header text-start text-dark">
+                        <div class="noto-sans-kr-b fs-5 mb-2">
+                            건강검진 결과지가 있는지 궁금해요
+                            <i class="fi fi-search"></i>
+                        </div>
+                        <div class="bg-warning-soft noto-sans-kr my-3 small">기본정보와 건강검진 데이터를 기반으로 <span class="noto-sans-kr-b">당뇨, 고혈압, 복부비만, 이상지질혈증</span>을 예측하고 필요한 건강기능식품을 추천해요😊</div>
+                        <div class="noto-sans-kr small text-dark">건강검진 데이터가 있으면 <br>질병이 있는지 더 정확하게 확인할 수 있어요.</div>
                     </div>
-                    <!-- Step 2 -->
-                    <div class="form-step d-none my-3" data-step="2">
-                        <div class="mb-2 noto-sans-kr-b">건강검진정보를 입력하는 첫 단계에요!</div>
-                        <label for="height" class="mb-2">키(cm)</label>
-                        <input type="number" id="height" name="height" class="form-control mb-2" required>
-                        <label for="weight" class="mb-2">몸무게(kg)</label>
-                        <input type="number" id="weight" name="weight" class="form-control mb-2" required>
+                    
+                    
+                    <div class="text-center my-4">
+                        <button class="btn btn-dark mx-2" id="formOption1">있어요</button>
+                        <button class="btn btn-dark mx-2" id="formOption2">지금 없어요</button>
                     </div>
-                    <!-- Step 3 -->
-                    <div class="form-step d-none my-3" data-step="3">
-                        <label for="phone" class="mb-2">전화번호:</label>
-                        <input type="tel" id="phone" name="phone" class="form-control mb-2" required>
+                </div>
+
+                <!-- Form 1 -->
+                <div id="form1" class="formContainer d-none">
+                    <div class="card-header d-flex justify-content-end smaller py-1">
+                        <span id="in_number1" class="card-title">
+                            1
+                        </span>
+                        <span class="card-title">
+                            &nbsp;/ 3
+                        </span>
                     </div>
-                </form>
-            </div>
-            <div class="card-footer text-center noto-sans-kr">
-                <button type="button" class="btn btn-dark px-5" id="nextBtn" disabled>다음</button>
+                    <form id="multiStepForm1" method="POST" action="/user_info">
+                        <div class="form-step my-3" data-step="1">
+                            <div class="mb-2 noto-sans-kr-b">대사증후군에 가까운지 확인할 수 있어요</div>
+                            <div class="mb-2 noto-sans-kr">간단한 정보를 먼저 입력해주세요😊</div>
+                            
+                            <!-- 이름 입력 -->
+                            <label for="name" class="mb-2" >이름<span class="text-danger">*</span></label>
+                            <input type="text" id="name" name="name" class="form-control mb-2" placeholder="이름을 입력해주세요" required>
+                            
+                            <div class="row my-3">
+                                <!-- 연령대 선택 -->
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="age" class="mb-2">연령대<span class="text-danger">*</span></label>
+                                    </div>
+                                    <select id="age" name="age" class="form-select form-select-sm" aria-label="age" required>
+                                        <option value="" selected disabled>연령대 선택</option>
+                                        <option value="1">10대</option>
+                                        <option value="2">20대</option>
+                                        <option value="3">30대</option>
+                                        <option value="4">40대</option>
+                                        <option value="5">50대</option>
+                                        <option value="6">60대</option>
+                                        <option value="7">70대</option>
+                                    </select>
+                                </div>
+                        
+                                <!-- 성별 선택 -->
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="gender" class="mb-2">성별<span class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input form-check-input-success" type="radio" name="gender" id="inlineRadio1" value="male" required>
+                                        <label class="form-check-label" for="inlineRadio1">남</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input form-check-input-success" type="radio" name="gender" id="inlineRadio2" value="female" required>
+                                        <label class="form-check-label" for="inlineRadio2">여</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="form-step d-none my-3" data-step="2">
+                            <div class="mb-2 noto-sans-kr-b"> 신체 정보도 필요해요</div>
+                            <label for="height" class="mb-2">키(cm)</label>
+                            <input type="number" id="height" name="height" class="form-control mb-2" placeholder="키를 입력해주세요" required>
+                            <label for="weight" class="mb-2">몸무게(kg)</label>
+                            <input type="number" id="weight" name="weight" class="form-control mb-2" placeholder="몸무게를 입력해주세요" required>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="form-step d-none my-3" data-step="3">
+                            <div class="mb-2 noto-sans-kr-b">마지막으로 혈압 정보를 입력해주세요</div>
+                            <!-- 수축 혈압 -->
+                            <label for="systolic" class="mb-2">수축 혈압<span class="text-danger">*</span></label>
+                            <input type="number" id="systolic" name="systolic" class="form-control mb-2" placeholder="수축 혈압을 입력해주세요" required>
+                            <!-- 이완 혈압 -->
+                            <label for="diastolic" class="mb-2">이완 혈압<span class="text-danger">*</span></label>
+                            <input type="number" id="diastolic" name="diastolic" class="form-control mb-2" placeholder="이완 혈압을 입력해주세요" required>
+                        </div>
+                        
+                        <div class="card-footer text-center noto-sans-kr">
+                            <button type="button" class="btn btn-dark px-5" id="nextBtn1" disabled>다음</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Form 2 -->
+                <div id="form2" class="formContainer d-none">
+                    <div class="card-header d-flex justify-content-end py-0">
+                        <span id="in_number2" class="card-title">
+                            1
+                        </span>
+                        <span class="card-title">
+                            &nbsp;/ 5
+                        </span>
+                    </div>
+                    <form id="multiStepForm2" method="POST" action="/user_info_2">
+                        <!-- Step 1 -->
+                        <div class="form-step my-3" data-step="1">
+                            <div class="mb-2 noto-sans-kr-b">듀번째 대사증후군에 가까운지 확인할 수 있어요</div>
+                            <div class="mb-2 noto-sans-kr">간단한 정보를 먼저 입력해주세요😊</div>
+                            
+                            <!-- 이름 입력 -->
+                            <label for="name" class="mb-2" >이름<span class="text-danger">*</span></label>
+                            <input type="text" id="name" name="name" class="form-control mb-2" placeholder="이름을 입력해주세요" required>
+                            
+                            <div class="row my-3">
+                                <!-- 연령대 선택 -->
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="age" class="mb-2">연령대<span class="text-danger">*</span></label>
+                                    </div>
+                                    <select id="age" name="age" class="form-select form-select-sm" aria-label="age" required>
+                                        <option value="" selected disabled>연령대 선택</option>
+                                        <option value="1">10대</option>
+                                        <option value="2">20대</option>
+                                        <option value="3">30대</option>
+                                        <option value="4">40대</option>
+                                        <option value="5">50대</option>
+                                        <option value="6">60대</option>
+                                        <option value="7">70대</option>
+                                    </select>
+                                </div>
+                        
+                                <!-- 성별 선택 -->
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="gender" class="mb-2">성별<span class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input form-check-input-success" type="radio" name="gender" id="inlineRadio1" value="male" required>
+                                        <label class="form-check-label" for="inlineRadio1">남</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input form-check-input-success" type="radio" name="gender" id="inlineRadio2" value="female" required>
+                                        <label class="form-check-label" for="inlineRadio2">여</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="form-step d-none my-3" data-step="2">
+                            <div class="mb-2 noto-sans-kr-b"> 신체 정보도 필요해요</div>
+                            <label for="height" class="mb-2">키(cm)</label>
+                            <input type="number" id="height" name="height" class="form-control mb-2" placeholder="키를 입력해주세요" required>
+                            <label for="weight" class="mb-2">몸무게(kg)</label>
+                            <input type="number" id="weight" name="weight" class="form-control mb-2" placeholder="몸무게를 입력해주세요" required>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="form-step d-none my-3" data-step="3">
+                            <div class="mb-2 noto-sans-kr-b">마지막으로 혈압 정보를 입력해주세요</div>
+                            <!-- 수축 혈압 -->
+                            <label for="systolic" class="mb-2">수축 혈압<span class="text-danger">*</span></label>
+                            <input type="number" id="systolic" name="systolic" class="form-control mb-2" placeholder="수축 혈압을 입력해주세요" required>
+                            <!-- 이완 혈압 -->
+                            <label for="diastolic" class="mb-2">이완 혈압<span class="text-danger">*</span></label>
+                            <input type="number" id="diastolic" name="diastolic" class="form-control mb-2" placeholder="이완 혈압을 입력해주세요" required>
+                        </div>
+                        
+                        <div class="card-footer text-center noto-sans-kr">
+                            <button type="button" class="btn btn-dark px-5" id="nextBtn2" disabled>다음</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <script src="/static/js/user_info.js"></script>
 {% endblock %}

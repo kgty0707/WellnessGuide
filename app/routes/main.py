@@ -34,19 +34,30 @@ def main(request: Request):
     )
 
 
+@router.post("/user_detail_info", response_class=HTMLResponse)
+def receive_user_detail_info():
+    pass
+
+
 @router.post("/user_info", response_class=HTMLResponse)
 def receive_user_info(request: Request,
                       name: str = Form(...),
+                      gender: str = Form(...),
+                      age: str = Form(...),
                       height: str = Form(...),
                       weight: str = Form(...),
-                      phone: str = Form(...)):
+                      systolic: str = Form(...),
+                      diastolic: str = Form(...)):
     try:
         # 사용자 정보 저장
         user_info = {
             "name": name,
+            "gender": gender,
+            "age": age,
             "height": height,
             "weight": weight,
-            "phone": phone
+            "systolic": systolic,
+            "diastolic": diastolic
         }
         print(user_info)  # 디버깅용 출력
 

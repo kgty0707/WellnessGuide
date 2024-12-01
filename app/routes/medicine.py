@@ -6,7 +6,7 @@ import os
 load_dotenv(verbose=True)
 
 PINECONE_API_KEY = os.getenv('PINECONE_API_KEY')
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+OPENAI_API_KEY = os.getenv('_OPENAI_API_KEY')
 INDEX_NAME = os.getenv('INDEX_NAME')
 
 pc = Pinecone(api_key=PINECONE_API_KEY)
@@ -190,11 +190,3 @@ def calculate_overall_risk(probabilities):
         message = "현재 대사증후군 위험이 높은 상태로 평가되고있어요. 혈압, 혈당, 콜레스테롤, 중성지방, 허리둘레 등에서 이상 소견이 여러 개 나타나고 있는 상태 같아요. 심혈관 질환, 당뇨병 같은 합병증으로 이어질 수 있어 관리가 필요해요."
 
     return average_probability, level, message
-
-
-# # 1. MAIN_FNCTN 유사도 검색
-# # 혈압, 혈당, 콜레스테롤, 체지방
-# query_text = "혈압 혈당 콜레스테롤 체지방"  # MAIN_FNCTN에 유사한 텍스트
-# print("Searching for MAIN_FNCTN similarity...")
-# similar_results = search_by_main_fnctn(index, query_text)
-# print(json.dumps(similar_results, indent=4, ensure_ascii=False))

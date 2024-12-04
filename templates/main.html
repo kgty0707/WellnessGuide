@@ -19,7 +19,7 @@
 <div class="container py-6 py-lg-7">
     <div class="flex-grow-1 d-flex justify-content-center align-items-center" style="padding-top: 100px;">
         <div class="card" style="width: 400px;">
-            <div class="card-body">
+            <div class="card-body text-dark">
                 <!-- 선택지 버튼 -->
                 
                 <div id="initialChoice">
@@ -34,15 +34,15 @@
                     
                     
                     <div class="text-center my-4">
-                        <button class="btn btn-dark mx-2" id="formOption1">있어요</button>
-                        <button class="btn btn-dark mx-2" id="formOption2">지금 없어요</button>
+                        <button class="btn btn-dark mx-2" id="formOption1">지금 없어요</button>
+                        <button class="btn btn-dark mx-2" id="formOption2">있어요</button>
                     </div>
                 </div>
 
                 <!-- Form 1 -->
                 <div id="form1" class="formContainer d-none">
-                    <div class="card-header d-flex justify-content-end smaller py-1">
-                        <span id="in_number1" class="card-title">
+                    <div class="card-header d-flex justify-content-end smaller py-1 text-dark">
+                        <span id="in_number1" class="card-title noto-sans-kr">
                             1
                         </span>
                         <span class="card-title">
@@ -55,7 +55,7 @@
                             <div class="mb-2 noto-sans-kr">간단한 정보를 먼저 입력해주세요😊</div>
                             
                             <!-- 이름 입력 -->
-                            <label for="name" class="mb-2" >이름<span class="text-danger">*</span></label>
+                            <label for="name" class="mb-2">이름<span class="text-danger">*</span></label>
                             <input type="text" id="name" name="name" class="form-control mb-2" placeholder="이름을 입력해주세요" required>
                             
                             <div class="row my-3">
@@ -65,14 +65,24 @@
                                         <label for="age" class="mb-2">연령대<span class="text-danger">*</span></label>
                                     </div>
                                     <select id="age" name="age" class="form-select form-select-sm" aria-label="age" required>
-                                        <option value="" selected disabled>연령대 선택</option>
-                                        <option value="1">10대</option>
-                                        <option value="2">20대</option>
-                                        <option value="3">30대</option>
-                                        <option value="4">40대</option>
-                                        <option value="5">50대</option>
-                                        <option value="6">60대</option>
-                                        <option value="7">70대</option>
+                                        <option value="1">0~4세</option>
+                                        <option value="2">5~9세</option>
+                                        <option value="3">10~14세</option>
+                                        <option value="4">15~19세</option>
+                                        <option value="5">20~24세</option>
+                                        <option value="6">25~29세</option>
+                                        <option value="7">30~34세</option>
+                                        <option value="8">35~39세</option>
+                                        <option value="9">40~44세</option>
+                                        <option value="10">45~49세</option>
+                                        <option value="11">50~54세</option>
+                                        <option value="12">55~59세</option>
+                                        <option value="13">60~64세</option>
+                                        <option value="14">65~69세</option>
+                                        <option value="15">70~74세</option>
+                                        <option value="16">75~79세</option>
+                                        <option value="17">80~84세</option>
+                                        <option value="18">85세+</option>
                                     </select>
                                 </div>
                         
@@ -82,11 +92,11 @@
                                         <label for="gender" class="mb-2">성별<span class="text-danger">*</span></label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input form-check-input-success" type="radio" name="gender" id="inlineRadio1" value="male" required>
+                                        <input class="form-check-input form-check-input-success" type="radio" name="gender" id="inlineRadio1" value="1" required>
                                         <label class="form-check-label" for="inlineRadio1">남</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input form-check-input-success" type="radio" name="gender" id="inlineRadio2" value="female" required>
+                                        <input class="form-check-input form-check-input-success" type="radio" name="gender" id="inlineRadio2" value="2" required>
                                         <label class="form-check-label" for="inlineRadio2">여</label>
                                     </div>
                                 </div>
@@ -94,10 +104,10 @@
                         </div>
                         <!-- Step 2 -->
                         <div class="form-step d-none my-3" data-step="2">
-                            <div class="mb-2 noto-sans-kr-b"> 신체 정보도 필요해요</div>
-                            <label for="height" class="mb-2">키(cm)</label>
+                            <div class="mb-2 noto-sans-kr-b">신체 정보도 필요해요</div>
+                            <label for="height" class="mb-2">키(cm)<span class="text-danger">*</span></label>
                             <input type="number" id="height" name="height" class="form-control mb-2" placeholder="키를 입력해주세요" required>
-                            <label for="weight" class="mb-2">몸무게(kg)</label>
+                            <label for="weight" class="mb-2">몸무게(kg)<span class="text-danger">*</span></label>
                             <input type="number" id="weight" name="weight" class="form-control mb-2" placeholder="몸무게를 입력해주세요" required>
                         </div>
                         <!-- Step 3 -->
@@ -119,18 +129,18 @@
 
                 <!-- Form 2 -->
                 <div id="form2" class="formContainer d-none">
-                    <div class="card-header d-flex justify-content-end py-0">
-                        <span id="in_number2" class="card-title">
+                    <div class="card-header d-flex justify-content-end smaller py-1 text-dark">
+                        <span id="in_number2" class="card-title noto-sans-kr">
                             1
                         </span>
                         <span class="card-title">
                             &nbsp;/ 5
                         </span>
                     </div>
-                    <form id="multiStepForm2" method="POST" action="/user_info_2">
+                    <form id="multiStepForm2" method="POST" action="/user_detail_info">
                         <!-- Step 1 -->
                         <div class="form-step my-3" data-step="1">
-                            <div class="mb-2 noto-sans-kr-b">듀번째 대사증후군에 가까운지 확인할 수 있어요</div>
+                            <div class="mb-2 noto-sans-kr-b">대사증후군에 가까운지 확인할 수 있어요</div>
                             <div class="mb-2 noto-sans-kr">간단한 정보를 먼저 입력해주세요😊</div>
                             
                             <!-- 이름 입력 -->
@@ -144,14 +154,24 @@
                                         <label for="age" class="mb-2">연령대<span class="text-danger">*</span></label>
                                     </div>
                                     <select id="age" name="age" class="form-select form-select-sm" aria-label="age" required>
-                                        <option value="" selected disabled>연령대 선택</option>
-                                        <option value="1">10대</option>
-                                        <option value="2">20대</option>
-                                        <option value="3">30대</option>
-                                        <option value="4">40대</option>
-                                        <option value="5">50대</option>
-                                        <option value="6">60대</option>
-                                        <option value="7">70대</option>
+                                        <option value="1">0~4세</option>
+                                        <option value="2">5~9세</option>
+                                        <option value="3">10~14세</option>
+                                        <option value="4">15~19세</option>
+                                        <option value="5">20~24세</option>
+                                        <option value="6">25~29세</option>
+                                        <option value="7">30~34세</option>
+                                        <option value="8">35~39세</option>
+                                        <option value="9">40~44세</option>
+                                        <option value="10">45~49세</option>
+                                        <option value="11">50~54세</option>
+                                        <option value="12">55~59세</option>
+                                        <option value="13">60~64세</option>
+                                        <option value="14">65~69세</option>
+                                        <option value="15">70~74세</option>
+                                        <option value="16">75~79세</option>
+                                        <option value="17">80~84세</option>
+                                        <option value="18">85세+</option>
                                     </select>
                                 </div>
                         
@@ -174,14 +194,14 @@
                         <!-- Step 2 -->
                         <div class="form-step d-none my-3" data-step="2">
                             <div class="mb-2 noto-sans-kr-b"> 신체 정보도 필요해요</div>
-                            <label for="height" class="mb-2">키(cm)</label>
+                            <label for="height" class="mb-2">키(cm)<span class="text-danger">*</span></label>
                             <input type="number" id="height" name="height" class="form-control mb-2" placeholder="키를 입력해주세요" required>
-                            <label for="weight" class="mb-2">몸무게(kg)</label>
+                            <label for="weight" class="mb-2">몸무게(kg)<span class="text-danger">*</span></label>
                             <input type="number" id="weight" name="weight" class="form-control mb-2" placeholder="몸무게를 입력해주세요" required>
                         </div>
                         <!-- Step 3 -->
                         <div class="form-step d-none my-3" data-step="3">
-                            <div class="mb-2 noto-sans-kr-b">마지막으로 혈압 정보를 입력해주세요</div>
+                            <div class="mb-2 noto-sans-kr-b">건강검진표의 혈압 정보를 입력해주세요</div>
                             <!-- 수축 혈압 -->
                             <label for="systolic" class="mb-2">수축 혈압<span class="text-danger">*</span></label>
                             <input type="number" id="systolic" name="systolic" class="form-control mb-2" placeholder="수축 혈압을 입력해주세요" required>
@@ -189,7 +209,28 @@
                             <label for="diastolic" class="mb-2">이완 혈압<span class="text-danger">*</span></label>
                             <input type="number" id="diastolic" name="diastolic" class="form-control mb-2" placeholder="이완 혈압을 입력해주세요" required>
                         </div>
-                        
+
+                        <!-- Step 4 -->
+                        <div class="form-step d-none my-3" data-step="4">
+                            <div class="mb-2 noto-sans-kr-b">공복 혈당과 허리 둘레도 필요해요</div>
+                            <label for="fasting_glucose" class="mb-2">공복 혈당<span class="text-danger">*</span></label>
+                            <input type="number" id="fasting_glucose" name="fasting_glucose" class="form-control mb-2" placeholder="공복 혈당을 입력해주세요" required>
+                            <label for="waist_circumference" class="mb-2">허리 둘레<span class="text-danger">*</span></label>
+                            <input type="number" id="waist_circumference" name="waist_circumference" class="form-control mb-2" placeholder="허리 둘레를 입력해주세요" required>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="form-step d-none my-3" data-step="5">
+                            <div class="mb-2 noto-sans-kr-b">마지막으로 콜레스테롤 정보만 기입하면 돼요</div>
+                            <label for="total_cholesterol" class="mb-2">총 콜레스테롤<span class="text-danger">*</span></label>
+                            <input type="number" id="total_cholesterol" name="total_cholesterol" class="form-control mb-2" placeholder="총 콜레스테롤을 입력해주세요" required>
+                            <label for="hdl_cholesterol" class="mb-2">HDL-콜레스테롤<span class="text-danger">*</span></label>
+                            <input type="number" id="hdl_cholesterol" name="hdl_cholesterol" class="form-control mb-2" placeholder="HDL-콜레스테롤을 입력해주세요" required>
+                            <label for="ldl_cholesterol" class="mb-2">LDL-콜레스테롤<span class="text-danger">*</span></label>
+                            <input type="number" id="ldl_cholesterol" name="ldl_cholesterol" class="form-control mb-2" placeholder="LDL-콜레스테롤을 입력해주세요" required>
+                            <label for="triglycerides" class="mb-2">트리글리세라이드<span class="text-danger">*</span></label>
+                            <input type="number" id="triglycerides" name="triglycerides" class="form-control mb-2" placeholder="트리글리세라이드를 입력해주세요" required>
+                        </div>
                         <div class="card-footer text-center noto-sans-kr">
                             <button type="button" class="btn btn-dark px-5" id="nextBtn2" disabled>다음</button>
                         </div>

@@ -9,7 +9,7 @@
     <div class="container bg-white text-dark px-6">
         <div class="section">
             <div class="noto-sans-kr-b fs-4">연령대별 데이터 시각화</div>
-            <div class="noto-sans-kr mb-5">건강검진 데이터를 기반으로 10세~120세까지의 당뇨, 고혈압, 이상지질혈증, 비만의 비율을 나타내고 있어요</div>
+            <div class="noto-sans-kr mb-5">건강검진 데이터를 기반으로 20세~85세까지의 당뇨, 고혈압, 이상지질혈증, 복부비만의 비율을 나타내고 있어요</div>
             <div
                 class="flot-chart small"
                 data-flot-id="flot_json_example"
@@ -18,24 +18,24 @@
                 data-flot-legend-show="true"
                 data-ajax-url="/_ajax/flot_chart_data.json"
                 data-ajax-update-interval="0"
-                data-ajax-params="['action','graph_data']['param2','value2']"
-                data-ajax-method="GET"
-                data-ajax-dataType="json"
                 data-flot-ticks='[
-                    [1, "Jan"],
-                    [2, "Feb"],
-                    [3, "Mar"],
-                    [4, "Apr"],
-                    [5, "May"],
-                    [6, "Jun"],
-                    [7, "Jul"],
-                    [8, "Aug"],
-                    [9, "Sep"],
-                    [10, "Oct"],
-                    [11, "Nov"],
-                    [12, "Dec"]
+                    [1, "20~24세"],
+                    [2, "25~29세"],
+                    [3, "30~34세"],
+                    [4, "35~39세"],
+                    [5, "40~44세"],
+                    [6, "45~49세"],
+                    [7, "50~54세"],
+                    [8, "55~59세"],
+                    [9, "60~64세"],
+                    [10, "65~69세"],
+                    [11, "70~74세"],
+                    [12, "75~79세"],
+                    [13, "80~84세"],
+                    [14, "85세+"]
                 ]'
-                style="height:400px;"></div>
+                style="height:400px;">
+            </div>
         </div>
         <div class="section pt-0 text-center">
             <div class="noto-sans-kr-b fs-4 text-center">질병에 따른 파이차트</div>
@@ -54,14 +54,15 @@
                         data-percent="73">
                         <div class="absolute-full d-middle pt-0 pb-2">
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                세계 1위
+                                약 85%
                             </span>
                             <div class="flex-none text-center">
-                                <span class="d-block noto-sans-kr-b fs-3">73%</span>
-                                <span class="d-block small">대사증후군 비율</span>
+                                <span class="d-block noto-sans-kr-b fs-3">83.5%</span>
                             </div>
                         </div>
                     </div>
+                    <div class="d-block noto-sans-kr-b my-2">10명중 2명</div>
+                    <div class="d-block small my-2">대사증후군 위험 인자를 하나라도 갖고 있는 사람</div>
                 </div>
                 <div class="col-4 ps-8">
                     <div class="row py-3">
@@ -73,12 +74,12 @@
                             data-line-width="20"
                             data-line-cap="round"
                             data-size="180"
-                            data-percent="40">
+                            data-percent="73">
 
                             <div class="absolute-full d-middle pt-0 pb-2">
                                 <div class="flex-none text-center">
-                                    <span class="d-block noto-sans-kr-b fs-6">40%</span>
-                                    <span class="d-block smaller">당뇨 비율</span>
+                                    <span class="d-block noto-sans-kr-b fs-6">73%</span>
+                                    <span class="d-block smaller">대사증후군 비율</span>
                                 </div>
                             </div>
                         </div>
@@ -92,11 +93,11 @@
                             data-line-width="20"
                             data-line-cap="round"
                             data-size="180"
-                            data-percent="63">
+                            data-percent="61.5">
 
                             <div class="absolute-full d-middle pt-0 pb-2">
                                 <div class="flex-none text-center">
-                                    <span class="d-block noto-sans-kr-b fs-6">63%</span>
+                                    <span class="d-block noto-sans-kr-b fs-6">61.5%</span>
                                     <span class="d-block smaller">고혈압 비율</span>
                                 </div>
                             </div>
@@ -113,11 +114,11 @@
                             data-line-width="20"
                             data-line-cap="round"
                             data-size="180"
-                            data-percent="58">
+                            data-percent="60.7">
 
                             <div class="absolute-full d-middle pt-0 pb-2">
                                 <div class="flex-none text-center">
-                                    <span class="d-block noto-sans-kr-b fs-6">58%</span>
+                                    <span class="d-block noto-sans-kr-b fs-6">60.7%</span>
                                     <span class="d-block smaller">이상지질혈증 비율</span>
                                 </div>
                             </div>
@@ -132,11 +133,11 @@
                             data-line-width="20"
                             data-line-cap="round"
                             data-size="180"
-                            data-percent="51">
+                            data-percent="23.8">
                             <div class="absolute-full d-middle pt-0 pb-2">
                                 <div class="flex-none text-center">
-                                    <span class="d-block noto-sans-kr-b fs-6">51%</span>
-                                    <span class="d-block smaller">비만 비율</span>
+                                    <span class="d-block noto-sans-kr-b fs-6">23.8%</span>
+                                    <span class="d-block smaller">복부비만 비율</span>
                                 </div>
                             </div>
                         </div>
@@ -146,4 +147,5 @@
         </div>
     </div>
     <script src="/static/js/dashboard.js"></script>
+    <script src="/static/assets/js/vendor.flot.js"></script>
 {% endblock %}
